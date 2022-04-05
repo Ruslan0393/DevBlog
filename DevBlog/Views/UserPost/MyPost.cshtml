@@ -1,0 +1,93 @@
+﻿@model GetGlobalPosts
+@inject UserManager<BlogUser> UserManager
+@inject SignInManager<BlogUser> SignInManager
+@{
+    ViewBag.Title = Model.title;
+   
+}
+
+<link href="~/css/ReadArea.css" rel="stylesheet" />
+<div class="user_page_post">
+    <div class="user_post_tools">
+        <ul class="user_tools_icons">
+            <li class="background_white" onclick="bg_white()"> </li>
+            <li class="background_green" onclick="bg_green()"> </li>
+            <li class="background_blue" onclick="bg_blue()"> </li>
+            <li class="background_gray" onclick="bg_gray()"> </li>
+            <li class="background_black" onclick="bg_black()"></li>
+            <li onclick="fan12()" class="font_size">12</li>
+            <li onclick="fan16()" class="font_size">16</li>
+            <li onclick="fan24()" class="font_size">24</li>
+            <li onclick="fan32()" class="font_size">32</li>
+        </ul>
+        <span class="text-muted">
+            
+                <span> @Model.users.FirstName  @Model.users.LastName</span>
+            
+                @Model.post.AddTime.ToString("dd/MM/yyyy  HH:mm")
+            </span>
+        </div>
+        <div id="user_post_area">
+            <div ondblclick="fullSize()" class="scroll_post_area">
+                <h3 style="text-align: center;">@Model.post.Title</h3>
+                @Model.post.Body
+            </div>
+        </div>
+    </div>
+
+
+
+    @section Scripts{
+        <script>
+            var area = document.getElementById("user_post_area");
+            var btnFullSize = document.getElementById("area_full_size");
+            var a = 0;
+            function fullSize() {
+                if (a % 2 == 0) {
+                    area.classList.add("full_size_add_list");
+                    area.style.height = "100%";
+                    a++;
+                }
+                else {
+                    area.classList.remove("full_size_add_list");
+                    a++;
+                }
+            }
+
+            function fan12() {
+                area.style.fontSize = "x-small";
+            }
+            function fan16() {
+                area.style.fontSize = "medium";
+            }
+            function fan24() {
+                area.style.fontSize = "large";
+            }
+            function fan32() {
+                area.style.fontSize = "x-large";
+            }
+            function bg_black() {
+                area.style.backgroundColor = "black";
+                area.style.color = "white";
+            }
+            function bg_white() {
+                area.style.backgroundColor = "floralwhite";
+                area.style.color = "black";
+            }
+            function bg_green() {
+                area.style.backgroundColor = "limegreen";
+                area.style.color = "black";
+            }
+            function bg_blue() {
+                area.style.backgroundColor = "DodgerBlue";
+                area.style.color = "black";
+            }
+            function bg_gray() {
+                area.style.backgroundColor = "DimGray";
+                area.style.color = "white";
+            }
+
+
+        </script>
+
+    }

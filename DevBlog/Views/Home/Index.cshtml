@@ -1,0 +1,28 @@
+﻿
+
+@model MyPostViewModel
+@{
+    ViewBag.Title = Model.Title;
+}
+@inject SignInManager<BlogUser> SignInManager
+@inject UserManager<BlogUser> UserManager
+@{
+}
+<div class="container">
+    @foreach (var i in Model.AllPosts)
+    {
+      
+        <div class="card" style="width: 100%; margin-bottom: 10px;">
+            <div class="card-body" style="overflow: hidden;">
+                <h5 class="card-title">@i.Title</h5>
+                <h6 class="card-subtitle mb-2 text-muted">@Model.AllUsers.FirstOrDefault(p=>p.Id == i.BlogUserRefId).FirstName</h6>
+                <div class="card-text" style="overflow: hidden; display: block; text-overflow: ellipsis; white-space: nowrap; height: 30px;"> @i.Body</div>
+                <div>
+                    <a href="@Url.Action("MyPost", "UserPost", new { id = i.Id })" class="card-link">Read more</a>
+                </div>
+            </div>
+        </div>
+
+    }
+</div>
+

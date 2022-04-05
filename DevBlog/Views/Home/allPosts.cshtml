@@ -1,0 +1,53 @@
+﻿@model MyPostViewModel
+@{
+    ViewBag.Title = Model.Title;
+}
+@inject SignInManager<BlogUser> SignInManager
+@inject UserManager<BlogUser> UserManager
+@{ 
+}
+
+
+<link href="~/css/FunctionsConsolet.css" rel="stylesheet" />
+<div class="container">
+    <div class="blog_box_user">
+        @{
+            foreach (var item in Model.AllPosts)
+            {
+                <div class="blog_items_user">
+                    <div class="card " style="width: 18rem;">
+                        <div class="card-body p-2">
+                            <div class="top">
+                                @if (item.Title.Length > 25)
+                                {
+                                    <h4 class="card-title mb-0">@item.Title.Substring(0, 15)...</h4>
+                                }
+                                else
+                                {
+                                    <h4 class="card-title mb-0">@item.Title</h4>
+                                }
+                            <span class="card_date_time  m-0 text-muted">
+
+                               @* @Model.AllUser.Where(v => v.Id == item.BlogUserRefId).Select(v => v.FirstName)
+                                @Model.AllUser.Where(v => v.Id == item.BlogUserRefId).Select(v => v.LastName)*@
+                                @item.AddTime.ToString("dd/MM/yyyy   hh:mm")
+                            </span>
+                            </div>
+                            @if (item.Body.Length > 100)
+                            {
+                                <p class="card-text">@item.Body.Substring(0, 100).Trim('\n') ...</p>
+                            }
+                            else
+                            {
+                                <p class="card-text  text-left">@item.Body</p>
+                            }
+                            <div class="bottom d-flex justify-content-between align-items-center">
+                                <a href="@Url.Action("MyPost", "UserPost", new { id = item.Id })" class="btn btn-info">View</a>
+a                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>

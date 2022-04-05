@@ -1,0 +1,45 @@
+﻿@model DevBlog.ViewModels.AddPostViewModel
+
+@{
+    ViewBag.Title = "Add new post";
+}
+
+
+<h2>Add new post</h2>
+<form enctype="multipart/form-data" asp-controller="userpost" asp-action="addpost" method="post" class="mt-3">
+    <div class="form-group">
+        <label asp-for="Title" class="col-sm-2 col-form-label d-block w-100"></label>
+        <input asp-for="Title" style="position:relative;" class="w-100 form-control  d-block" placeholder="Title" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Body" class="col-sm-2 col-form-label"></label>
+        <textarea class="form-control" asp-for="Body" style="resize: none;" rows="12"></textarea>
+        <span asp-validation-for="Body" class="text-danger"></span>
+    </div>
+    
+    <div class="form-group">
+        <label asp-for="Photo" class=" col-sm-2 d-block col-form-label"></label>
+        <div class="custom-file">
+            <input asp-for="Photo" class="form-control d-block custom-file-input" />
+            <label class="custom-file-label">Choose File...</label>
+        </div>
+    </div>
+    <div class="form-group d-flex justify-content-end ">
+        <button type="submit" id="btn_post" class="btn btn-primary  w-25 ">Add post</button>
+    </div>
+
+</form>
+
+@section Scripts {
+    <script>
+
+        $('.custom-file-input').on("change", function () {
+            var fileName = $(this).val().split("\\").pop();
+            $(this).next('.custom-file-label').html(fileName);
+        });
+
+    </script>
+
+}

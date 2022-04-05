@@ -1,0 +1,12 @@
+﻿#user_functions_console {
+    width: 140px;
+    display: none;
+    height: 170px;
+    border-radius: 20px;
+    background-color: lightgray;
+    padding: 15px;
+    position: relative;
+    transform: translate(-98px, -144px);
+    top: 50%;
+    left: 50%;
+}
